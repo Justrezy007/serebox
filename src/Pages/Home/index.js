@@ -7,17 +7,17 @@ const Home = ({navigation}) => {
     return (
         <View style={styles.page}>
             <ScrollView style={styles.tanamanContainer}>
-                <Tanaman namaBenih="Tomat" hari="2" kondisi="Baru" />
-                <Tanaman namaBenih="Cabai" hari="5" kondisi="Expired" />
-                <Tanaman namaBenih="Melon" hari="7" kondisi="Baru" />
-                <Tanaman namaBenih="Semangka" hari="3" kondisi="Expired" />
-                <Tanaman namaBenih="Kacang Panjang" hari="1" kondisi="Baru" />
-                <Tanaman namaBenih="Kacang Panjang" hari="1" kondisi="Baru" />
-                <Tanaman namaBenih="Kacang Panjang" hari="1" kondisi="Baru" />
-                <Tanaman namaBenih="Kacang Panjang" hari="1" kondisi="Baru" />
-                <Tanaman namaBenih="Kacang Panjang" hari="1" kondisi="Baru" />
+                <Tanaman navigation={navigation} namaBenih="Tomat" hari="2" kondisi="Baru" />
+                <Tanaman navigation={navigation} namaBenih="Cabai" hari="5" kondisi="Expired" />
+                <Tanaman navigation={navigation} namaBenih="Melon" hari="7" kondisi="Baru" />
+                <Tanaman navigation={navigation} namaBenih="Semangka" hari="3" kondisi="Expired" />
+                <Tanaman navigation={navigation} namaBenih="Bawang Merah" hari="12" kondisi="Expired" />
+                <Tanaman navigation={navigation} namaBenih="Jagung" hari="3" kondisi="Baru" />
+                <Tanaman navigation={navigation} namaBenih="Kedelai" hari="2" kondisi="Baru" />
+                <Tanaman navigation={navigation} namaBenih="Timun" hari="1" kondisi="Baru" />
+                <Tanaman navigation={navigation} namaBenih="Kacang Panjang" hari="1" kondisi="Baru" />
             </ScrollView>
-            <Navigation Navigation={navigation} />
+            <Navigation Navigation={navigation} target="home" />
         </View>
     )
 }
@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     },
     page:{
         flex: 1,
-        backgroundColor:'#f1f1f1'
+        backgroundColor:'#181818'
     }
 })
