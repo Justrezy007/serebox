@@ -3,9 +3,17 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {TanamanBenih, TanamanSiap, TanamanTumbuh} from '../../Resources';
 import {colors} from "../../Utils"
 
-const Tanaman = ({navigation,namaBenih, hari, kondisi}) => {
+const Tanaman = ({navigation,namaBenih,gambar, hari, totalHari, kondisi, jumlah, medan}) => {
   return (
-    <TouchableOpacity style={styles.plantContainer} onPress={()=>navigation.navigate("TanamanDetail")}>
+    <TouchableOpacity style={styles.plantContainer} onPress={()=>navigation.navigate("TanamanDetail",{
+      namaBenih: namaBenih,
+      gambar: gambar,
+      hari : hari,
+      totalHari: totalHari,
+      kondisi: kondisi,
+      jumlah: jumlah,
+      medan: medan
+    })}>
         {hari > 3 ? (hari > 6 ? <Image source={TanamanSiap} style={styles.imagePlant} /> : <Image source={TanamanTumbuh} style={styles.imagePlant} />) : <Image style={styles.imagePlant} source={TanamanBenih} />}
       <View style={styles.plantDesciption}>
         <Text style={styles.plantType}>{namaBenih}</Text>
@@ -36,9 +44,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.Dark,
     height: '100%',
-    padding: 11,
+    paddingLeft: 18,
+    paddingVertical: 11,
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
+
   },
   plantType: {
     fontSize: 18,

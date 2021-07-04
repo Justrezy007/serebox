@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,42 +7,102 @@ import {
   TouchableOpacity,
   Switch,
 } from 'react-native';
-import { color } from 'react-native-reanimated';
+import {useSelector, useDispatch} from 'react-redux';
 import {Exit, ShoppingBag, Clock, Plus} from '../../Resources';
-import {colors} from "../../Utils"
+import {colors} from '../../Utils';
 
-const BibitDetail = ({navigation}) => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+const BibitDetail = ({route, navigation}) => {
+  const Tanaman = useSelector(state => state.TanamanReducer.Tanaman);
+  const dispatch = useDispatch();
+  const {nama, gambar, medanNormal, medanExpired, jumlahHari, method} = route.params;
+  const [form, setForm] = useState({
+    nama: nama,
+    gambar: gambar,
+    medan: medanNormal,
+    jumlahHari: jumlahHari,
+    method: method,
+    jumlahBenih: "",
+    expired: false,
+  });
+
+  const onInputChange = (value, input) => {
+    setForm({
+      ...form,
+      [input]: value,
+    });
+  };
+  const toggleSwitch = (value, input) => {
+    if (value == false) {
+      setForm({
+        ...form,
+        [input]: false,
+        medan: medanNormal,
+      });
+    } else {
+      setForm({
+        ...form,
+        [input]: true,
+        medan: medanExpired,
+      });
+    }
+  };
+  const submitData = () => {
+    const data = {
+      nama: form.nama,
+      gambar: form.gambar,
+      medan: form.medan,
+      jumlahHari: jumlahHari,
+      method: method,
+      jumlahBenih: parseInt(form.jumlahBenih),
+      kondisi: form.expired ? 'Expired' : 'Baru',
+    };
+    console.log(Tanaman);
+    dispatch({
+      type: 'SET_FORM',
+      inputNama: data.nama,
+      inputGambar: data.gambar,
+      inputMedan: data.medan,
+      inputJumlahHari: data.jumlahHari,
+      inputMethod: data.method,
+      inputBenih: data.jumlahBenih,
+      inputKondisi: data.kondisi,
+    });
+    navigation.replace('Home');
+  };
   return (
     <View style={styles.background}>
       <View style={styles.page}>
-        <TouchableOpacity style={styles.exitButton} onPress={()=> navigation.replace("Menu")}>
+        <TouchableOpacity
+          style={styles.exitButton}
+          onPress={() => navigation.navigate('Menu')}>
           <Exit style={styles.exitIcon} />
         </TouchableOpacity>
-        <Text style={styles.titleBibit}>Tomat</Text>
+        <Text style={styles.titleBibit}>{nama}</Text>
         <View style={styles.formBibit}>
           <ShoppingBag style={styles.labelInput} />
           <TextInput
             style={styles.input}
-            keyboardType="number-pad"
+            keyboardType="numeric"
             placeholder="Jumlah Benih"
+            placeholderTextColor={colors.textSecond}
+            value={form.jumlahBenih}
+            onChangeText={value => onInputChange(value, 'jumlahBenih')}
           />
         </View>
         <View style={styles.formBibit}>
+          <Clock style={styles.labelInput} />
           <View style={styles.labelExpired}>
-            <Clock style={styles.labelInput} />
             <Text style={styles.labelBibit}>Expired</Text>
+            <Switch
+              trackColor={{false: '#767577', true: colors.Secondary}}
+              thumbColor={form.expired ? colors.textPrime : colors.textSecond}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={value => toggleSwitch(value, 'expired')}
+              value={form.expired}
+            />
           </View>
-          <Switch
-            trackColor={{false: '#767577', true: colors.Secondary}}
-            thumbColor={isEnabled ? colors.textPrime : colors.textSecond}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={isEnabled}
-          />
         </View>
-        <TouchableOpacity style={styles.submitBibit}>
+        <TouchableOpacity style={styles.submitBibit} onPress={submitData}>
           <Plus style={styles.submitIcon} />
           <Text style={styles.submitText}>TANAM</Text>
         </TouchableOpacity>
@@ -54,11 +114,11 @@ const BibitDetail = ({navigation}) => {
 export default BibitDetail;
 
 const styles = StyleSheet.create({
-  background:{
-    flex: 1 ,
-    backgroundColor: colors.Primary,
-    justifyContent: "center",
-    alignContent: "center"
+  background: {
+    flex: 1,
+    backgroundColor: colors.Secondary,
+    justifyContent: 'center',
+    alignContent: 'center',
   },
   page: {
     width: 300,
@@ -71,7 +131,6 @@ const styles = StyleSheet.create({
     color: colors.textPrime,
     fontWeight: 'bold',
     alignSelf: 'center',
-    marginTop: 16,
   },
   formBibit: {
     marginTop: 18,
@@ -82,22 +141,24 @@ const styles = StyleSheet.create({
   },
   labelBibit: {
     color: colors.textSecond,
-    marginLeft: 8
+    marginLeft: 8,
   },
   labelInput: {
     width: 32,
     height: 32,
     color: colors.textSecond,
   },
-  labelExpired:{
-    flexDirection: "row",
-    alignItems: "center",
-    marginRight: 20,
+  labelExpired: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flex: 1,
+    marginLeft: 20,
   },
   input: {
-    backgroundColor: '#121212',
+    backgroundColor: colors.Dark,
     borderWidth: 1,
-    borderColor: colors.Border,
+    borderColor: colors.textSecond,
     color: colors.textPrime,
     borderRadius: 8,
     width: 128,
@@ -107,12 +168,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   submitBibit: {
-    backgroundColor: colors.Secondary,
+    backgroundColor: colors.Primary,
     marginVertical: 28,
     marginHorizontal: 32,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderRadius: 8,
   },
   submitText: {
@@ -123,11 +184,11 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     fontWeight: 'bold',
   },
-  submitIcon:{
+  submitIcon: {
     marginLeft: 16,
     color: colors.textPrime,
     width: 16,
-    height: 16
+    height: 16,
   },
   exitIcon: {
     width: 32,

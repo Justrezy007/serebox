@@ -1,57 +1,50 @@
-import React from 'react'
-import { View, Text, StyleSheet, ScrollView} from 'react-native'
-import Navigation from "../../Components/Navigation"
-import Bibit from "../../Components/Bibit"
-import {BawangMerah,
-    Cabai,
-    Jagung,
-    Kedelai,
-    Melon,
-    Padi,
-    Semangka,
-    TanamanBenih,
-    TanamanSiap,
-    TanamanTumbuh,
-    Timun,
-    Tomat} from "../../Resources"
+import React from 'react';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import Navigation from '../../Components/Navigation';
+import Bibit from '../../Components/Bibit';
+import {useSelector} from 'react-redux';
+import { colors } from '../../Utils';
 
 const Menu = ({navigation}) => {
-    return (
-        <View style={styles.page}>
-            <ScrollView>
-            <View style={styles.menuContainer}>
-                <Bibit navigation={navigation} nama="Tomat" gambar={Tomat} />
-                <Bibit navigation={navigation} nama="Cabai" gambar={Cabai} />
-                <Bibit navigation={navigation} nama="Melon" gambar={Melon} />
-                <Bibit navigation={navigation} nama="Semangka" gambar={Semangka} />
-                <Bibit navigation={navigation} nama="Bawang Merah" gambar={BawangMerah} />
-                <Bibit navigation={navigation} nama="Kacang Panjang" gambar={Kedelai} />
-                <Bibit navigation={navigation} nama="Jagung" gambar={Jagung} />
-                <Bibit navigation={navigation} nama="Labu" gambar={Melon} />
-                <Bibit navigation={navigation} nama="Timun" gambar={Timun} />
-                <Bibit navigation={navigation} nama="Padi" gambar={Padi} />
-                <Bibit navigation={navigation} nama="Bayam" gambar={TanamanTumbuh} />
-                <Bibit navigation={navigation} nama="Kedelai" gambar={Kedelai} />
-            </View>
-            </ScrollView>
-            <Navigation Navigation={navigation} target="menu" />
+  const ListBenih = useSelector(state => state.BibitReducer.Benih);
+  return (
+    <View style={styles.page}>
+      <ScrollView>
+        <View style={styles.menuContainer}>
+          {ListBenih.map(benih => {
+            return (
+              <Bibit
+                key={benih.id}
+                navigation={navigation}
+                nama={benih.nama}
+                gambar={benih.gambar}
+                medanNormal={benih.medanMagnetNormal}
+                medanExpired={benih.medanMagnetExpired}
+                jumlahHari={benih.jumlahHari}
+                method={benih.method}
+              />
+            );
+          })}
         </View>
-    )
-}
+      </ScrollView>
+      <Navigation Navigation={navigation} target="menu" />
+    </View>
+  );
+};
 
-export default Menu
+export default Menu;
 
 const styles = StyleSheet.create({
-    page:{
-        flex: 1,
-        backgroundColor:'#181818'
-    },
-    menuContainer:{
-        marginHorizontal: 18,
-        marginTop: 10,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        marginBottom: 64
-    }
-})
+  page: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  menuContainer: {
+    marginHorizontal: 18,
+    marginTop: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginBottom: 64,
+  },
+});

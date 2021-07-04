@@ -15,12 +15,10 @@ const Navigation = ({target,Navigation}) => {
           {target == "menu" ?
           <TouchableOpacity onPress={() => Navigation.replace('Menu')}>
             <PlusSquare style={styles.iconNavOn} /> 
-            <Text style={styles.textNavOn}>Menu</Text>
           </TouchableOpacity>
            : 
           <TouchableOpacity onPress={() => Navigation.replace('Menu')}>
             <PlusSquare style={styles.iconNav} /> 
-            <Text style={styles.textNav}>Menu</Text>
           </TouchableOpacity> 
            }
       </View>
@@ -28,12 +26,10 @@ const Navigation = ({target,Navigation}) => {
         {target == "home" ? 
         <TouchableOpacity onPress={() => Navigation.replace('Home')}>
           <Home style={styles.iconNavOn} />
-          <Text style={styles.textNavOn}>Home</Text>
         </TouchableOpacity>
         : 
         <TouchableOpacity onPress={() => Navigation.replace('Home')}>
           <Home style={styles.iconNav} />
-          <Text style={styles.textNav}>Home</Text>
         </TouchableOpacity>
         }
       </View>
@@ -41,12 +37,10 @@ const Navigation = ({target,Navigation}) => {
         {target == "setting" ? 
         <TouchableOpacity onPress={()=> Navigation.replace('Setting')}>
           <Setting style={styles.iconNavOn} />
-          <Text style={styles.textNavOn}>Settings</Text>
         </TouchableOpacity>
         :  
         <TouchableOpacity onPress={()=> Navigation.replace('Setting')}>
           <Setting style={styles.iconNav} />
-          <Text style={styles.textNav}>Settings</Text>
         </TouchableOpacity>
         }
         
@@ -59,7 +53,7 @@ export default Navigation;
 
 const styles = StyleSheet.create({
   navigationContainer: {
-    height: 64,
+    height: 48,
     position: 'absolute',
     bottom: 0,
     width: '100%',
@@ -67,33 +61,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   boxNav: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.Dark,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  textNavOn: {
-    fontSize: 13,
-    marginTop: 4,
-    fontWeight: 'bold',
-    color: colors.Secondary,
-  },
-  textNav: {
-    fontSize: 13,
-    marginTop: 4,
-    fontWeight: 'bold',
-    color: colors.textSecond,
   },
   iconNav: {
     width: 32,
     height: 32,
     color: colors.textSecond,
     alignSelf: 'center',
+    opacity: .5
   },
   iconNavOn: {
     width: 32,
     height: 32,
-    color: colors.Secondary,
+    color: colors.textPrime,
     alignSelf: 'center',
   },
 });

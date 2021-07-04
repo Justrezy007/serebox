@@ -1,9 +1,9 @@
 export const colors = {
-  background: '#202020',
-  textPrime: '#f1f1f1',
-  textSecond: '#999999',
-  Primary: '#056162',
-  Secondary: 'orange',
-  Dark : "#35363A",
+  background: '#f5f0e1',
+  textPrime: '#1e3d59',
+  textSecond: '#2d5c86',
+  Primary: '#ff6e40',
+  Secondary: '#ffc13b',
+  Dark : "#e6d9b3",
   Border: '#303030',
 };

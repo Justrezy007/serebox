@@ -1,42 +1,46 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { colors } from "../../Utils"
-import { Clipboard, CheckCircle } from "../../Resources"
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import {colors} from '../../Utils';
+import {Clipboard, CheckCircle} from '../../Resources';
 
-const Task = ({day,time,medan, status}) => {
+const Task = ({day, time, medan, status}) => {
   return (
     <View style={styles.checkpoint}>
-        <View style={styles.wrapper}>
-            <View style={styles.heading}>
-                <View style={styles.status}>
-                    {status == "done" ? <CheckCircle style={styles.iconStatusDone} /> :<Clipboard style={styles.iconStatus}/>}
-                </View>
-                <Text style={styles.checkTitle}>Day {day}</Text>
-            </View>
-            <View>
-                <Text style={styles.timeNeed}>{time} minutes</Text>
-            </View>
+      <View style={styles.wrapper}>
+        <View style={styles.heading}>
+          <View style={styles.status}>
+            {status == 'done' ? (
+              <CheckCircle style={styles.iconStatusDone} />
+            ) : (
+              <Clipboard style={styles.iconStatus} />
+            )}
+          </View>
+          <Text style={styles.checkTitle}>Step {day}</Text>
         </View>
+        <View>
+          <Text style={styles.timeNeed}>{time} minutes</Text>
+        </View>
+      </View>
     </View>
-  )
+  );
 };
 
 export default Task;
 
 const styles = StyleSheet.create({
   checkpoint: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.Dark,
     borderRadius: 8,
     margin: 16,
     padding: 16,
   },
-  wrapper:{
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between"
+  wrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  timeNeed:{
-    color: colors.textSecond
+  timeNeed: {
+    color: colors.textSecond,
   },
   heading: {
     flexDirection: 'row',
