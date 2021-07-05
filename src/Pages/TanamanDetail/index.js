@@ -11,8 +11,10 @@ import {colors} from '../../Utils';
 import {Clipboard, ArrowLeft} from '../../Resources';
 import Task from '../../Components/Task';
 
-const TanamanDetail = ({navigation,route}) => {
-  const {namaBenih, gambar, hari, totalHari, kondisi, jumlah, medan} = route.params;
+const TanamanDetail = ({navigation, route}) => {
+  const {id,namaBenih, gambar, hari, totalHari, kondisi, jumlah, medan, method} =
+    route.params;
+  console.log(method);
   return (
     <View style={styles.wrapper}>
       <View style={styles.close}>
@@ -34,11 +36,22 @@ const TanamanDetail = ({navigation,route}) => {
         </View>
       </View>
       <ScrollView style={styles.page}>
-        <Task day={1} time={30} medan={0.2} status="done" />
-        <Task day={2} time={45} medan={0.2} status="pending" />
-        <Task day={3} time={20} medan={0.2} status="pending" />
-        <Task day={4} time={10} medan={0.2} status="pending" />
-        <Task day={5} time={5} medan={0.2} status="pending" />
+        {method.map((step, i) => {
+          return (
+            <Task
+              key={i}
+              id={id}
+              stepNumber={step.Step}
+              time={step.Waktu}
+              medan={medan}
+              isDone={step.isDone}
+              isOpen={step.isOpen}
+              title={step.Title}
+              description={step.Description}
+              navigation={navigation} 
+            />
+          );
+        })}
       </ScrollView>
     </View>
   );
@@ -90,7 +103,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.background,
   },
-  gambarBenih:{
+  gambarBenih: {
     width: 100,
     height: 100,
     borderRadius: 50,

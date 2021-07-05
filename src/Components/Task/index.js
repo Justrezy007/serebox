@@ -1,27 +1,37 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
 import {colors} from '../../Utils';
 import {Clipboard, CheckCircle} from '../../Resources';
 
-const Task = ({day, time, medan, status}) => {
+const Task = ({
+  stepNumber,
+  id,
+  time,
+  navigation,
+  isDone,
+}) => {
   return (
-    <View style={styles.checkpoint}>
+    <TouchableOpacity
+      style={styles.checkpoint}
+      onPress={() =>
+        navigation.navigate('TaskDetail', {id: id, step: stepNumber})
+      }>
       <View style={styles.wrapper}>
         <View style={styles.heading}>
           <View style={styles.status}>
-            {status == 'done' ? (
+            {isDone == true ? (
               <CheckCircle style={styles.iconStatusDone} />
             ) : (
               <Clipboard style={styles.iconStatus} />
             )}
           </View>
-          <Text style={styles.checkTitle}>Step {day}</Text>
+          <Text style={styles.checkTitle}>Step {stepNumber}</Text>
         </View>
         <View>
           <Text style={styles.timeNeed}>{time} minutes</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

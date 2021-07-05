@@ -14,6 +14,7 @@ const Home = ({navigation}) => {
           return (
             <Tanaman
               key={tanaman.id}
+              id={tanaman.id}
               navigation={navigation}
               namaBenih={tanaman.nama}
               gambar={tanaman.gambar}
@@ -22,6 +23,7 @@ const Home = ({navigation}) => {
               kondisi={tanaman.kondisi}
               jumlah={tanaman.jumlah}
               medan={tanaman.medan}
+              method={tanaman.method}
             />
           );
         })}
