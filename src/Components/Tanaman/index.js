@@ -3,24 +3,16 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {TanamanBenih, TanamanSiap, TanamanTumbuh} from '../../Resources';
 import {colors} from "../../Utils"
 
-const Tanaman = ({navigation,id,namaBenih,gambar, hari, totalHari, kondisi, jumlah, medan, method}) => {
+const Tanaman = ({navigation,id,namaBenih,gambar, totalStep, updateStep, kondisi, jumlah, medan, method}) => {
   return (
     <TouchableOpacity style={styles.plantContainer} onPress={()=>navigation.navigate("TanamanDetail",{
       id:id,
-      namaBenih: namaBenih,
-      gambar: gambar,
-      hari : hari,
-      totalHari: totalHari,
-      kondisi: kondisi,
-      jumlah: jumlah,
-      medan: medan,
-      method: method
     })}>
-        {hari > 3 ? (hari > 6 ? <Image source={TanamanSiap} style={styles.imagePlant} /> : <Image source={TanamanTumbuh} style={styles.imagePlant} />) : <Image style={styles.imagePlant} source={TanamanBenih} />}
+        {updateStep > 3 ? (updateStep > 6 ? <Image source={TanamanSiap} style={styles.imagePlant} /> : <Image source={TanamanTumbuh} style={styles.imagePlant} />) : <Image style={styles.imagePlant} source={TanamanBenih} />}
       <View style={styles.plantDesciption}>
         <Text style={styles.plantType}>{namaBenih}</Text>
         <Text style={styles.plantCond}>{kondisi}</Text>
-        <Text style={styles.plantProg}>Hari Ke - {hari}</Text>
+        <Text style={styles.plantProg}>Step Ke {updateStep}</Text>
       </View>
     </TouchableOpacity>
   );

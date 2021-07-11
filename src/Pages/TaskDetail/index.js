@@ -1,34 +1,48 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 import {ArrowLeft} from '../../Resources';
 import {colors} from '../../Utils';
+import FIREBASE from '../../Config/FIREBASE';
 
 const TaskDetail = ({route, navigation}) => {
   const {id, step} = route.params;
-  const StepData = useSelector(
-    state => state.TanamanReducer.Tanaman[id - 1].method[step - 1],
-  );
-  console.log(StepData);
+  const [methodData, setMethodData] = useState({});
+  useEffect(() => {
+    const ref = 'Tanaman/' + id+'/method'+'/'+(step-1);
+    FIREBASE.database()
+      .ref(ref)
+      .once('value', querySnapShot => {
+        let data = querySnapShot.val() ? querySnapShot.val() : {};
+        let Detail = {...data};
+
+        setMethodData({Method: Detail});
+        console.log(methodData.Method)
+      });
+  }, []);
   return (
     <View style={styles.page}>
-      <View style={styles.header}>
+      {methodData.Method ? (
+        <View>
+        <View style={styles.header}>
         <TouchableOpacity
           style={styles.closeButton}
-          onPress={() => navigation.navigate('Home')}>
+          onPress={() => navigation.navigate('TanamanDetail',{id:id})}>
           <ArrowLeft style={styles.icon} />
         </TouchableOpacity>
         <Text style={styles.nav}>Step {step}</Text>
       </View>
       <View>
-        <Text style={styles.title}>{StepData.Title}</Text>
-        <Text style={styles.description}>{StepData.Description}</Text>
-        {StepData.isDone ? (
+        <Text style={styles.title}>{methodData.Method.Title}</Text>
+        <Text style={styles.description}>{methodData.Method.Description}</Text>
+        {methodData.Method.isDone ? (
           <TouchableOpacity style={styles.buttonCount}><Text style={styles.textButton}>MULAI</Text></TouchableOpacity>
         ) : (
           <TouchableOpacity style={styles.buttonCountDisabled} disabled={true}><Text style={styles.textButton}>MULAI</Text></TouchableOpacity>
         )}
       </View>
+      </View>
+      ):(<Text>Wait</Text>)}
     </View>
   );
 };

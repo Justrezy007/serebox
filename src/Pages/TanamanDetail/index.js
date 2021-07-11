@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,49 +10,71 @@ import {
 import {colors} from '../../Utils';
 import {Clipboard, ArrowLeft} from '../../Resources';
 import Task from '../../Components/Task';
+import FIREBASE from '../../Config/FIREBASE';
 
 const TanamanDetail = ({navigation, route}) => {
-  const {id,namaBenih, gambar, hari, totalHari, kondisi, jumlah, medan, method} =
-    route.params;
-  console.log(method);
+  const {id} = route.params;
+  const [tanamanData, setTanamanData] = useState({});
+  useEffect(() => {
+    const ref = 'Tanaman/' + id;
+    FIREBASE.database()
+      .ref(ref)
+      .once('value', querySnapShot => {
+        let data = querySnapShot.val() ? querySnapShot.val() : {};
+        let Detail = {...data};
+
+        setTanamanData({Tanaman: Detail});
+      });
+  }, []);
   return (
     <View style={styles.wrapper}>
-      <View style={styles.close}>
-        <TouchableOpacity
-          style={styles.closeButton}
-          onPress={() => navigation.navigate('Home')}>
-          <ArrowLeft style={styles.icon} />
-        </TouchableOpacity>
-      </View>
-      <View style={styles.header}>
-        <View style={styles.iconWrapper}>
-          <Image style={styles.gambarBenih} source={gambar} />
+      {tanamanData.Tanaman ? (
+        <View>
+          <View style={styles.close}>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => navigation.navigate('Home')}>
+              <ArrowLeft style={styles.icon} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.header}>
+            <View style={styles.iconWrapper}>
+              <Image
+                style={styles.gambarBenih}
+                source={tanamanData.Tanaman.gambar}
+              />
+            </View>
+            <View style={styles.detailWrapper}>
+              <Text style={styles.detailTitle}>{tanamanData.Tanaman.nama}</Text>
+              <Text style={styles.detailStatus}>
+                {tanamanData.Tanaman.kondisi}
+              </Text>
+              <Text style={styles.detailData}>
+                {tanamanData.Tanaman.jumlah} benih
+              </Text>
+              <Text style={styles.detailData}>
+                {tanamanData.Tanaman.medan} mT
+              </Text>
+            </View>
+          </View>
+          <ScrollView>
+            {tanamanData.Tanaman.method.map((step, i) => {
+              return (
+                <Task
+                  key={i}
+                  id={id}
+                  step={step.Step}
+                  time={step.Waktu}
+                  isDone={step.isDone}
+                  navigation={navigation}
+                />
+              );
+            })}
+          </ScrollView>
         </View>
-        <View style={styles.detailWrapper}>
-          <Text style={styles.detailTitle}>{namaBenih}</Text>
-          <Text style={styles.detailStatus}>{kondisi}</Text>
-          <Text style={styles.detailData}>{jumlah} benih</Text>
-          <Text style={styles.detailData}>{medan} mT</Text>
-        </View>
-      </View>
-      <ScrollView style={styles.page}>
-        {method.map((step, i) => {
-          return (
-            <Task
-              key={i}
-              id={id}
-              stepNumber={step.Step}
-              time={step.Waktu}
-              medan={medan}
-              isDone={step.isDone}
-              isOpen={step.isOpen}
-              title={step.Title}
-              description={step.Description}
-              navigation={navigation} 
-            />
-          );
-        })}
-      </ScrollView>
+      ) : (
+        <Text>Wait</Text>
+      )}
     </View>
   );
 };

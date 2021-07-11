@@ -4,7 +4,7 @@ import {colors} from '../../Utils';
 import {Clipboard, CheckCircle} from '../../Resources';
 
 const Task = ({
-  stepNumber,
+  step,
   id,
   time,
   navigation,
@@ -14,7 +14,7 @@ const Task = ({
     <TouchableOpacity
       style={styles.checkpoint}
       onPress={() =>
-        navigation.navigate('TaskDetail', {id: id, step: stepNumber})
+        navigation.navigate('TaskDetail', {id: id, step: step})
       }>
       <View style={styles.wrapper}>
         <View style={styles.heading}>
@@ -25,7 +25,7 @@ const Task = ({
               <Clipboard style={styles.iconStatus} />
             )}
           </View>
-          <Text style={styles.checkTitle}>Step {stepNumber}</Text>
+          <Text style={styles.checkTitle}>Step {step}</Text>
         </View>
         <View>
           <Text style={styles.timeNeed}>{time} minutes</Text>

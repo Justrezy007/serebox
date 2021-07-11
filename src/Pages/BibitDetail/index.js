@@ -6,8 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   Switch,
+  Alert,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
+import FIREBASE from '../../Config/FIREBASE';
 import {Exit, ShoppingBag, Clock, Plus} from '../../Resources';
 import {colors} from '../../Utils';
 
@@ -47,27 +49,42 @@ const BibitDetail = ({route, navigation}) => {
     }
   };
   const submitData = () => {
+    if(parseInt(form.jumlahBenih) > 0 ){
     const data = {
       nama: form.nama,
       gambar: form.gambar,
-      medan: form.medan,
-      jumlahHari: jumlahHari,
-      method: method,
-      jumlahBenih: parseInt(form.jumlahBenih),
       kondisi: form.expired ? 'Expired' : 'Baru',
+      totalStep: jumlahHari,
+      updateStep: 0,
+      jumlah: parseInt(form.jumlahBenih),
+      medan: form.medan, 
+      method: method,    
     };
     console.log(Tanaman);
     dispatch({
       type: 'SET_FORM',
-      inputNama: data.nama,
-      inputGambar: data.gambar,
-      inputMedan: data.medan,
-      inputJumlahHari: data.jumlahHari,
-      inputMethod: data.method,
-      inputBenih: data.jumlahBenih,
-      inputKondisi: data.kondisi,
+      inputNama: form.nama,
+      inputGambar: form.gambar,
+      inputMedan: form.medan,
+      inputJumlahHari: jumlahHari,
+      inputMethod: method,
+      inputBenih: parseInt(form.jumlahBenih),
+      inputKondisi: form.expired ? 'Expired' : 'Baru',
     });
-    navigation.replace('Home');
+    const inputRef = FIREBASE.database().ref('Tanaman');
+    inputRef
+      .push(data)
+      .then((data) =>{
+        Alert.alert('Sukses','Tanaman Berhasil Ditambahkan!');
+        navigation.replace('Home');
+      }) 
+      .catch((error)=>{
+        console.log("Error: ",error);
+      })
+  }
+  else{
+    Alert.alert('Gagal','Harap input jumlah benih!');
+  }
   };
   return (
     <View style={styles.background}>
