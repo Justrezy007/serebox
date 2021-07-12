@@ -10,6 +10,7 @@ import Setting from './icons/settings.svg';
 import ShoppingBag from './icons/shopping-bag.svg';
 import Exit from './icons/x.svg';
 import CheckCircle from './icons/check-circle.svg';
+import Trash from './icons/trash.svg';
 import BawangMerah from './images/BawangMerah.jpg';
 import Cabai from "./images/Cabai.jpg"
 import Jagung from "./images/Jagung.jpg"
@@ -37,6 +38,7 @@ export {
   ShoppingBag,
   Exit,
   CheckCircle,
+  Trash,
   BawangMerah,
   Cabai,
   Jagung,

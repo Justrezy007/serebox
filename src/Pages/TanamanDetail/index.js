@@ -6,9 +6,10 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {colors} from '../../Utils';
-import {Clipboard, ArrowLeft} from '../../Resources';
+import {ArrowLeft, Trash} from '../../Resources';
 import Task from '../../Components/Task';
 import FIREBASE from '../../Config/FIREBASE';
 
@@ -26,15 +27,45 @@ const TanamanDetail = ({navigation, route}) => {
         setTanamanData({Tanaman: Detail});
       });
   }, []);
+
+  const deleteTanaman = () => {
+    Alert.alert(
+      'Hapus Tanaman',
+      'Anda yakin akan menghapus tanaman?',
+      [
+        {
+          text: 'Tidak',
+          style: 'cancel',
+        },
+        {
+          text: 'Hapus',
+          onPress: () => {
+            const ref = 'Tanaman/' + id;
+            FIREBASE.database()
+              .ref(ref)
+              .remove();
+              navigation.replace('Home')
+          },
+          style: 'delete',
+        },
+      ],
+      {cacelable: false},
+    );
+  };
   return (
     <View style={styles.wrapper}>
       {tanamanData.Tanaman ? (
         <View>
-          <View style={styles.close}>
+          <View style={styles.action}>
             <TouchableOpacity
               style={styles.closeButton}
               onPress={() => navigation.navigate('Home')}>
               <ArrowLeft style={styles.icon} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.deleteButton}
+              onPress={deleteTanaman}>
+              <Trash style={styles.icon} />
             </TouchableOpacity>
           </View>
           <View style={styles.header}>
@@ -97,14 +128,18 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 16,
     width: '100%',
   },
-  close: {
+  action: {
     backgroundColor: colors.background,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 18,
+    paddingTop: 8,
   },
   closeButton: {
     width: 32,
     height: 32,
-    marginTop: 8,
-    marginLeft: 24,
   },
   icon: {
     width: 128,

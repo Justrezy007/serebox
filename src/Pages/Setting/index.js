@@ -1,15 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {View, Text, StyleSheet, Switch} from 'react-native';
 import Navigation from '../../Components/Navigation';
 import {colors} from '../../Utils';
+import FIREBASE from '../../Config/FIREBASE';
+import { update } from 'lodash';
 
 const Setting = ({navigation}) => {
   const [Notification, setNotification] = useState(false);
   const [Cooler, setCooler] = useState(false);
+  const [turn, setTurn] = useState({
+    Buzzer: 0,
+    Fan:0,
+    LED:0,
+    Relay:0,
+    DarkTheme:0,
+  })
   const [DarkTheme, setDarkTheme] = useState(false);
-  const toggleNotification = () =>
-    setNotification(previousState => !previousState);
-  const toggleCooler = () => setCooler(previousState => !previousState);
+
+  useEffect(()=>{
+    FIREBASE.database()
+      .ref('Turn')
+      .update(turn);
+  },[turn])
+
+  const onInputChange = (value, input) => {
+
+    setTurn({
+      ...turn,
+      [input]: value?1:0,
+    });
+
+    
+  };
+  
   const toggleDarkTheme = () => setDarkTheme(previousState => !previousState);
   return (
     <View style={styles.page}>
@@ -22,8 +45,8 @@ const Setting = ({navigation}) => {
             Notification ? colors.textPrime : colors.textSecond
           }
           ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleNotification}
-          value={Notification}
+          onValueChange={value=>onInputChange(value,'LED')}
+          value={turn.LED == 1? true:false}
         />
       </View>
       <View style={styles.listSetting}>
@@ -32,8 +55,8 @@ const Setting = ({navigation}) => {
           trackColor={{false: '#767577', true: colors.Secondary}}
           thumbColor={Cooler ? colors.textPrime : colors.textSecond}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleCooler}
-          value={Cooler}
+          onValueChange={value=>onInputChange(value,'Fan')}
+          value={turn.Fan == 1? true:false}
         />
       </View>
       <View style={styles.listSetting}>
@@ -42,8 +65,8 @@ const Setting = ({navigation}) => {
           trackColor={{false: '#767577', true: colors.Secondary}}
           thumbColor={DarkTheme ? colors.textPrime : colors.textSecond}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleDarkTheme}
-          value={DarkTheme}
+          onValueChange={value=>onInputChange(value,'DarkTheme')}
+          value={turn.DarkTheme == 1? true:false}
         />
       </View>
       <Navigation Navigation={navigation} target="setting" />
