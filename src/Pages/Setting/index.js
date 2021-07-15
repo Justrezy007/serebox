@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, Switch} from 'react-native';
 import Navigation from '../../Components/Navigation';
 import {colors} from '../../Utils';
 import FIREBASE from '../../Config/FIREBASE';
-import { update } from 'lodash';
 
 const Setting = ({navigation}) => {
   const [Notification, setNotification] = useState(false);
@@ -21,7 +20,9 @@ const Setting = ({navigation}) => {
     FIREBASE.database()
       .ref('Turn')
       .update(turn);
-  },[turn])
+
+    console.log(turn);
+  },[Notification,Cooler])
 
   const onInputChange = (value, input) => {
 
