@@ -7,11 +7,20 @@ import {
   Melon,
   Padi,
   Semangka,
+  Bombay,
+  Edamame,
+  Sawi,
+  Wijen,
+  KacangTanah,
+  BuncisHitam,
+  KurmaMajol,
+  KacangHijau,
   TanamanBenih,
   TanamanSiap,
   TanamanTumbuh,
   Timun,
   Tomat,
+  Kakao
 } from '../Resources';
 
 const initialStateBibit = {
@@ -20,13 +29,13 @@ const initialStateBibit = {
       id: 1,
       nama: 'Tomat',
       gambar: Tomat,
-      medanMagnetNormal: 2,
-      medanMagnetExpired: 1,
+      medanMagnetNormal: 1,
+      medanMagnetExpired: 3,
       jumlahHari: 8,
       method: [
         {
           Step: 1,
-          Waktu: 30,
+          Waktu: 1,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
             'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',
@@ -57,8 +66,8 @@ const initialStateBibit = {
       id: 2,
       nama: 'Cabai',
       gambar: Cabai,
-      medanMagnetNormal: 2,
-      medanMagnetExpired: 1,
+      medanMagnetNormal: 3,
+      medanMagnetExpired: 3,
       jumlahHari: 5,
       method: [
         {
@@ -92,10 +101,10 @@ const initialStateBibit = {
     },
     {
       id: 3,
-      nama: 'Melon',
-      gambar: Melon,
-      medanMagnetNormal: 2,
-      medanMagnetExpired: 1,
+      nama: 'Edamame',
+      gambar: Edamame,
+      medanMagnetNormal: 3,
+      medanMagnetExpired: 3,
       jumlahHari: 3,
       method: [
         {
@@ -131,7 +140,7 @@ const initialStateBibit = {
       id: 4,
       nama: 'Semangka',
       gambar: Semangka,
-      medanMagnetNormal: 2,
+      medanMagnetNormal: 1,
       medanMagnetExpired: 1,
       jumlahHari: 1,
       method: [
@@ -166,9 +175,9 @@ const initialStateBibit = {
     },
     {
       id: 5,
-      nama: 'Bawang Merah',
-      gambar: BawangMerah,
-      medanMagnetNormal: 2,
+      nama: 'Bawang Bombay',
+      gambar: Bombay,
+      medanMagnetNormal: 1,
       medanMagnetExpired: 1,
       jumlahHari: 12,
       method: [
@@ -205,8 +214,8 @@ const initialStateBibit = {
       id: 6,
       nama: 'Kedelai',
       gambar: Kedelai,
-      medanMagnetNormal: 2,
-      medanMagnetExpired: 1,
+      medanMagnetNormal: 29,
+      medanMagnetExpired: 46,
       jumlahHari: 2,
       method: [
         {
@@ -242,8 +251,8 @@ const initialStateBibit = {
       id: 7,
       nama: 'Jagung',
       gambar: Jagung,
-      medanMagnetNormal: 2,
-      medanMagnetExpired: 1,
+      medanMagnetNormal: 50,
+      medanMagnetExpired: 50,
       jumlahHari: 7,
       method: [
         {
@@ -279,8 +288,8 @@ const initialStateBibit = {
       id: 8,
       nama: 'Padi',
       gambar: Padi,
-      medanMagnetNormal: 2,
-      medanMagnetExpired: 1,
+      medanMagnetNormal: 43,
+      medanMagnetExpired: 43,
       jumlahHari: 5,
       method: [
         {
@@ -314,10 +323,232 @@ const initialStateBibit = {
     },
     {
       id: 9,
-      nama: 'Timun',
-      gambar: Timun,
-      medanMagnetNormal: 2,
+      nama: 'Sawi',
+      gambar: Sawi,
+      medanMagnetNormal: 6,
       medanMagnetExpired: 1,
+      jumlahHari: 7,
+      method: [
+        {
+          Step: 1,
+          Waktu: 30,
+          Title: 'Merendam benih dengan Air Hangat',
+          Description:
+            'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',
+          isDone: false,
+          isOpen: true,
+        },
+        {
+          Step: 2,
+          Waktu: 15,
+          Title: 'Tunggu Hingga Dingin',
+          Description:
+            'Tiriskan benih dari air, lalu diamkan di udara terbuka selama 15 menit',
+          isDone: false,
+          isOpen: false,
+        },
+        {
+          Step: 3,
+          Waktu: 8,
+          Title: 'Meradiasi Benih',
+          Description:
+            'Radiasi benih menggunakan Alat selama 8 menit untuk meningkatkan kualitas biji',
+          isDone: false,
+          isOpen: false,
+        },
+      ],
+    },
+    {
+      id: 10,
+      nama: 'Wijen',
+      gambar: Wijen,
+      medanMagnetNormal: 3,
+      medanMagnetExpired: 3,
+      jumlahHari: 7,
+      method: [
+        {
+          Step: 1,
+          Waktu: 30,
+          Title: 'Merendam benih dengan Air Hangat',
+          Description:
+            'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',
+          isDone: false,
+          isOpen: true,
+        },
+        {
+          Step: 2,
+          Waktu: 15,
+          Title: 'Tunggu Hingga Dingin',
+          Description:
+            'Tiriskan benih dari air, lalu diamkan di udara terbuka selama 15 menit',
+          isDone: false,
+          isOpen: false,
+        },
+        {
+          Step: 3,
+          Waktu: 8,
+          Title: 'Meradiasi Benih',
+          Description:
+            'Radiasi benih menggunakan Alat selama 8 menit untuk meningkatkan kualitas biji',
+          isDone: false,
+          isOpen: false,
+        },
+      ],
+    },
+    {
+      id: 11,
+      nama: 'Kacang Tanah',
+      gambar: KacangTanah,
+      medanMagnetNormal: 1,
+      medanMagnetExpired: 1,
+      jumlahHari: 7,
+      method: [
+        {
+          Step: 1,
+          Waktu: 30,
+          Title: 'Merendam benih dengan Air Hangat',
+          Description:
+            'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',
+          isDone: false,
+          isOpen: true,
+        },
+        {
+          Step: 2,
+          Waktu: 15,
+          Title: 'Tunggu Hingga Dingin',
+          Description:
+            'Tiriskan benih dari air, lalu diamkan di udara terbuka selama 15 menit',
+          isDone: false,
+          isOpen: false,
+        },
+        {
+          Step: 3,
+          Waktu: 8,
+          Title: 'Meradiasi Benih',
+          Description:
+            'Radiasi benih menggunakan Alat selama 8 menit untuk meningkatkan kualitas biji',
+          isDone: false,
+          isOpen: false,
+        },
+      ],
+    },
+    {
+      id: 12,
+      nama: 'Buncis Hitam',
+      gambar: BuncisHitam,
+      medanMagnetNormal: 1,
+      medanMagnetExpired: 1,
+      jumlahHari: 7,
+      method: [
+        {
+          Step: 1,
+          Waktu: 30,
+          Title: 'Merendam benih dengan Air Hangat',
+          Description:
+            'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',
+          isDone: false,
+          isOpen: true,
+        },
+        {
+          Step: 2,
+          Waktu: 15,
+          Title: 'Tunggu Hingga Dingin',
+          Description:
+            'Tiriskan benih dari air, lalu diamkan di udara terbuka selama 15 menit',
+          isDone: false,
+          isOpen: false,
+        },
+        {
+          Step: 3,
+          Waktu: 8,
+          Title: 'Meradiasi Benih',
+          Description:
+            'Radiasi benih menggunakan Alat selama 8 menit untuk meningkatkan kualitas biji',
+          isDone: false,
+          isOpen: false,
+        },
+      ],
+    },
+    {
+      id: 13,
+      nama: 'Kacang Hijau',
+      gambar: KacangHijau,
+      medanMagnetNormal: 1,
+      medanMagnetExpired: 1,
+      jumlahHari: 7,
+      method: [
+        {
+          Step: 1,
+          Waktu: 30,
+          Title: 'Merendam benih dengan Air Hangat',
+          Description:
+            'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',
+          isDone: false,
+          isOpen: true,
+        },
+        {
+          Step: 2,
+          Waktu: 15,
+          Title: 'Tunggu Hingga Dingin',
+          Description:
+            'Tiriskan benih dari air, lalu diamkan di udara terbuka selama 15 menit',
+          isDone: false,
+          isOpen: false,
+        },
+        {
+          Step: 3,
+          Waktu: 8,
+          Title: 'Meradiasi Benih',
+          Description:
+            'Radiasi benih menggunakan Alat selama 8 menit untuk meningkatkan kualitas biji',
+          isDone: false,
+          isOpen: false,
+        },
+      ],
+    },
+    {
+      id: 14,
+      nama: 'Kurma Majol',
+      gambar: KurmaMajol,
+      medanMagnetNormal: 10,
+      medanMagnetExpired: 10,
+      jumlahHari: 7,
+      method: [
+        {
+          Step: 1,
+          Waktu: 30,
+          Title: 'Merendam benih dengan Air Hangat',
+          Description:
+            'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',
+          isDone: false,
+          isOpen: true,
+        },
+        {
+          Step: 2,
+          Waktu: 15,
+          Title: 'Tunggu Hingga Dingin',
+          Description:
+            'Tiriskan benih dari air, lalu diamkan di udara terbuka selama 15 menit',
+          isDone: false,
+          isOpen: false,
+        },
+        {
+          Step: 3,
+          Waktu: 8,
+          Title: 'Meradiasi Benih',
+          Description:
+            'Radiasi benih menggunakan Alat selama 8 menit untuk meningkatkan kualitas biji',
+          isDone: false,
+          isOpen: false,
+        },
+      ],
+    },
+    {
+      id: 15,
+      nama: 'Kakao',
+      gambar: Kakao,
+      medanMagnetNormal: 5,
+      medanMagnetExpired: 5,
       jumlahHari: 7,
       method: [
         {
@@ -366,7 +597,7 @@ const initialStateTanaman = {
       method: [
         {
           Step: 1,
-          Waktu: 30,
+          Waktu: 5,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
             'Rendam benih di dalam air hangat selama 30 menit untuk memecah masa dormansi biji',

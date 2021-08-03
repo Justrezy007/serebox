@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {ArrowLeft} from '../../Resources';
 import {colors} from '../../Utils';
 import FIREBASE from '../../Config/FIREBASE';
+import BackgroundTimer from 'react-native-background-timer';
 
 const TaskDetail = ({route, navigation}) => {
   const {id, step} = route.params;
@@ -73,37 +74,30 @@ const TaskDetail = ({route, navigation}) => {
       });
   }, []);
 
-  const handleDone =() =>{
-    FIREBASE.database()
-      .ref('Turn')
-      .update({
-        Buzzer: 1,
-        Fan:1,
-        LED:1,
-        Relay:0,
-        DarkTheme:0,
-      });
-  }
+  const handleDone = () => {
+    console.log('done');
+  };
 
   const handleProto = () => {
     FIREBASE.database().ref('BenihData').update(tanamanData);
     setShowTimer(true);
     let time =
       timerData.hours * 3600 + timerData.minutes * 60 + timerData.seconds;
-    let intervalTimer = setInterval(() => {
-      time--;
-      let hour = Math.floor(time / 3600);
-      let minute = Math.floor(time / 60) - hour * 60;
-      let second = Math.floor(time / 1) - hour * 3600 - minute * 60;
-      setTimerData({
-        hours: hour,
-        minutes: minute,
-        seconds: second,
-      });
-      if(timerData.hours == 0 && timerData.minutes == 0 && timerData.seconds == 0){
-        handleDone();
+    BackgroundTimer.runBackgroundTimer(() => {
+      if (time > 0) {
+        time--;
+        let hour = Math.floor(time / 3600);
+        let minute = Math.floor(time / 60) - hour * 60;
+        let second = Math.floor(time / 1) - hour * 3600 - minute * 60;
+        setTimerData({
+          hours: hour,
+          minutes: minute,
+          seconds: second,
+        });
+        console.log(time);
+      } else {
         setIsDone(true);
-        clearInterval(intervalTimer);
+        BackgroundTimer.stopBackgroundTimer();
       }
     }, 1000);
   };
@@ -142,18 +136,12 @@ const TaskDetail = ({route, navigation}) => {
               showTimer ? (
                 <TouchableOpacity
                   style={
-                    isDone
-                      ? styles.buttonCount
-                      : styles.buttonCountDisabled
+                    isDone ? styles.buttonCount : styles.buttonCountDisabled
                   }>
                   <Text
                     style={styles.textButton}
-                    onPress={handleProto}
-                    disabled={
-                      isDone
-                        ? false
-                        : true
-                    }>
+                    onPress={handleDone}
+                    disabled={isDone ? false : true}>
                     SELESAI
                   </Text>
                 </TouchableOpacity>

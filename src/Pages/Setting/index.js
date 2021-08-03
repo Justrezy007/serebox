@@ -12,9 +12,9 @@ const Setting = ({navigation}) => {
     Fan:0,
     LED:0,
     Relay:0,
-    DarkTheme:0,
+    ManualMode:0,
   })
-  const [DarkTheme, setDarkTheme] = useState(false);
+  const [ManualMode, setManualMode] = useState(false);
 
   useEffect(()=>{
     FIREBASE.database()
@@ -22,7 +22,7 @@ const Setting = ({navigation}) => {
       .update(turn);
 
     console.log(turn);
-  },[Notification,Cooler])
+  },[turn])
 
   const onInputChange = (value, input) => {
 
@@ -30,24 +30,23 @@ const Setting = ({navigation}) => {
       ...turn,
       [input]: value?1:0,
     });
-
     
   };
   
-  const toggleDarkTheme = () => setDarkTheme(previousState => !previousState);
+  const toggleManualMode = () => setManualMode(previousState => !previousState);
   return (
     <View style={styles.page}>
       <Text style={styles.titleSetting}>Setting Alat</Text>
       <View style={styles.listSetting}>
-        <Text style={styles.textSetting}>Notifikasi</Text>
+        <Text style={styles.textSetting}>Tes Koneksi</Text>
         <Switch
           trackColor={{false: '#767577', true: colors.Secondary}}
           thumbColor={
             Notification ? colors.textPrime : colors.textSecond
           }
           ios_backgroundColor="#3e3e3e"
-          onValueChange={value=>onInputChange(value,'LED')}
-          value={turn.LED == 1? true:false}
+          onValueChange={value=>onInputChange(value,'Buzzer')}
+          value={turn.Buzzer == 1? true:false}
         />
       </View>
       <View style={styles.listSetting}>
@@ -61,13 +60,13 @@ const Setting = ({navigation}) => {
         />
       </View>
       <View style={styles.listSetting}>
-        <Text style={styles.textSetting}>Dark Theme</Text>
+        <Text style={styles.textSetting}>Manual Mode</Text>
         <Switch
           trackColor={{false: '#767577', true: colors.Secondary}}
-          thumbColor={DarkTheme ? colors.textPrime : colors.textSecond}
+          thumbColor={ManualMode ? colors.textPrime : colors.textSecond}
           ios_backgroundColor="#3e3e3e"
-          onValueChange={value=>onInputChange(value,'DarkTheme')}
-          value={turn.DarkTheme == 1? true:false}
+          onValueChange={value=>onInputChange(value,'Relay')}
+          value={turn.Relay == 1? true:false}
         />
       </View>
       <Navigation Navigation={navigation} target="setting" />

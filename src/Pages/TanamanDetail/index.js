@@ -84,7 +84,7 @@ const TanamanDetail = ({navigation, route}) => {
                 {tanamanData.Tanaman.jumlah} benih
               </Text>
               <Text style={styles.detailData}>
-                {tanamanData.Tanaman.medan} mT
+                {(tanamanData.Tanaman.medan)/10} mT
               </Text>
             </View>
           </View>

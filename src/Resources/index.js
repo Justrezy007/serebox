@@ -23,7 +23,15 @@ import TanamanSiap from "./images/TanamanSiap.jpg"
 import TanamanTumbuh from "./images/TanamanTumbuh.jpg"
 import Timun from "./images/Timun.jpg"
 import Tomat from "./images/Tomat.jpg"
-
+import Bombay from "./images/Bombay.jpg"
+import Edamame from "./images/Edamame.jpg"
+import Sawi from "./images/Sawi.jpg"
+import Wijen from "./images/Wijen.jpg"
+import KacangTanah from "./images/KacangTanah.jpg"
+import BuncisHitam from "./images/BuncisHitam.jpg"
+import KurmaMajol from "./images/KurmaMajol.jpg"
+import KacangHijau from "./images/KacangHijau.jpg"
+import Kakao from "./images/Kakao.jpg"
 
 export {
   ArrowLeft,
@@ -45,10 +53,19 @@ export {
   Kedelai,
   Melon,
   Padi,
+  Bombay,
+  Edamame,
+  Sawi,
+  Wijen,
+  KacangTanah,
+  BuncisHitam,
+  KurmaMajol,
   Semangka,
   TanamanBenih,
   TanamanSiap,
   TanamanTumbuh,
   Timun,
-  Tomat
+  Tomat,
+  KacangHijau,
+  Kakao
 };
