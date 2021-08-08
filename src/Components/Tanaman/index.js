@@ -1,19 +1,46 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {TanamanBenih, TanamanSiap, TanamanTumbuh} from '../../Resources';
-import {colors} from "../../Utils"
+import {colors} from '../../Utils';
+import FIREBASE from '../../Config/FIREBASE';
 
-const Tanaman = ({navigation,id,namaBenih,gambar, totalStep, updateStep, kondisi, jumlah, medan, method}) => {
+const Tanaman = ({navigation, id, updateStep}) => {
+  const [tanaman, setTanaman] = useState({});
+
+  useEffect(() => {
+    FIREBASE.database()
+      .ref('Tanaman/' + id)
+      .once('value', querySnapShot => {
+        let data = querySnapShot.val() ? querySnapShot.val() : {};
+        let DataTanaman = {...data};
+        setTanaman(DataTanaman);
+      });
+  }, [tanaman.updateStep]);
+
   return (
-    <TouchableOpacity style={styles.plantContainer} onPress={()=>navigation.navigate("TanamanDetail",{
-      id:id,
-    })}>
-        {updateStep > 3 ? (updateStep > 6 ? <Image source={TanamanSiap} style={styles.imagePlant} /> : <Image source={TanamanTumbuh} style={styles.imagePlant} />) : <Image style={styles.imagePlant} source={TanamanBenih} />}
-      <View style={styles.plantDesciption}>
-        <Text style={styles.plantType}>{namaBenih}</Text>
-        <Text style={styles.plantCond}>{kondisi}</Text>
-        <Text style={styles.plantProg}>Step Ke {updateStep}</Text>
-      </View>
+    <TouchableOpacity
+      style={styles.plantContainer}
+      onPress={() =>
+        navigation.navigate('TanamanDetail', {
+          id: id,
+        })
+      }>
+      {tanaman.updateStep > 3 ? (
+        tanaman.updateStep > 6 ? (
+          <Image source={TanamanSiap} style={styles.imagePlant} />
+        ) : (
+          <Image source={TanamanTumbuh} style={styles.imagePlant} />
+        )
+      ) : (
+        <Image style={styles.imagePlant} source={TanamanBenih} />
+      )}
+      {tanaman.method ? (
+        <View style={styles.plantDesciption}>
+          <Text style={styles.plantType}>{tanaman.nama}</Text>
+          <Text style={styles.plantCond}>{tanaman.kondisi}</Text>
+          <Text style={styles.plantProg}>Step Ke {tanaman.updateStep}</Text>
+        </View>
+      ) : null}
     </TouchableOpacity>
   );
 };
@@ -42,7 +69,6 @@ const styles = StyleSheet.create({
     paddingVertical: 11,
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
-
   },
   plantType: {
     fontSize: 18,

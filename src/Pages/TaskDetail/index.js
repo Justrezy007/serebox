@@ -59,6 +59,7 @@ const TaskDetail = ({route, navigation}) => {
         let firebaseMethod = Detail.method[step - 1];
 
         setMethodData({Method: firebaseMethod});
+
         setTanamanData({
           Durasi: Detail.method[step - 1].Waktu,
           Kondisi: Detail.kondisi == 'baru' ? 0 : 1,
@@ -66,6 +67,7 @@ const TaskDetail = ({route, navigation}) => {
           Nama: handleNama(Detail.nama),
           Status: 1,
         });
+
         setTimerData({
           hours: 0,
           minutes: Detail.method[step - 1].Waktu,
@@ -75,7 +77,49 @@ const TaskDetail = ({route, navigation}) => {
   }, []);
 
   const handleDone = () => {
-    console.log('done');
+    FIREBASE.database()
+      .ref('Tanaman/' + id )
+      .once('value', querySnapShot => {
+        let data = querySnapShot.val() ? querySnapShot.val() : {};
+
+        FIREBASE.database()
+          .ref('Tanaman/' + id)
+          .update({
+            gambar : data.gambar,
+            jumlah : data.jumlah,
+            kondisi : data.kondisi,
+            medan : data.medan,
+            method : data.method,
+            nama : data.nama,
+            totalStep : data.totalStep,
+            updateStep : (step),
+          });
+          
+        FIREBASE.database()
+          .ref('Tanaman/' + id + '/method/' + (step - 1))
+          .update({
+            Description: data.method[step - 1].Description,
+            Step: data.method[step - 1].Step,
+            Title: data.method[step - 1].Title,
+            Waktu: data.method[step - 1].Waktu,
+            isDone: true,
+            isOpen: false,
+          });
+
+        FIREBASE.database()
+          .ref('Tanaman/' + id + '/method/' + step)
+          .update({
+            Description: data.method[step].Description,
+            Step: data.method[step].Step,
+            Title: data.method[step].Title,
+            Waktu: data.method[step].Waktu,
+            isDone: false,
+            isOpen: true,
+          });
+
+      });
+    BackgroundTimer.stopBackgroundTimer();
+    navigation.navigate('Home');
   };
 
   const handleProto = () => {
@@ -97,7 +141,6 @@ const TaskDetail = ({route, navigation}) => {
         console.log(time);
       } else {
         setIsDone(true);
-        BackgroundTimer.stopBackgroundTimer();
       }
     }, 1000);
   };
@@ -108,6 +151,7 @@ const TaskDetail = ({route, navigation}) => {
           <View style={styles.header}>
             <TouchableOpacity
               style={styles.closeButton}
+              disabled={showTimer ? true : false}
               onPress={() => navigation.navigate('TanamanDetail', {id: id})}>
               <ArrowLeft style={styles.icon} />
             </TouchableOpacity>

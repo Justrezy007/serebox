@@ -35,6 +35,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 1,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -44,6 +45,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -53,6 +55,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -72,6 +75,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -81,6 +85,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -90,6 +95,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -109,6 +115,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -118,6 +125,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -127,6 +135,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -146,6 +155,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -155,6 +165,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -164,6 +175,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -183,6 +195,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -192,6 +205,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -201,6 +215,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -220,6 +235,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -229,6 +245,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -238,6 +255,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -257,6 +275,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -266,6 +285,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -275,6 +295,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -294,6 +315,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -303,6 +325,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -312,6 +335,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -331,6 +355,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -340,6 +365,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -349,6 +375,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -368,6 +395,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -377,6 +405,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -386,6 +415,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -405,6 +435,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -414,6 +445,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -423,6 +455,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -442,6 +475,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -451,6 +485,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -460,6 +495,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -479,6 +515,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -488,6 +525,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -497,6 +535,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -516,6 +555,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -525,6 +565,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -534,6 +575,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -553,6 +595,7 @@ const initialStateBibit = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -562,6 +605,7 @@ const initialStateBibit = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -571,6 +615,7 @@ const initialStateBibit = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -597,6 +642,7 @@ const initialStateTanaman = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 5,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -606,6 +652,7 @@ const initialStateTanaman = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -615,6 +662,7 @@ const initialStateTanaman = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -636,6 +684,7 @@ const initialStateTanaman = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -645,6 +694,7 @@ const initialStateTanaman = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -654,6 +704,7 @@ const initialStateTanaman = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -675,6 +726,7 @@ const initialStateTanaman = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -684,6 +736,7 @@ const initialStateTanaman = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -693,6 +746,7 @@ const initialStateTanaman = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
@@ -714,6 +768,7 @@ const initialStateTanaman = {
       method: [
         {
           Step: 1,
+          Status: 3,
           Waktu: 30,
           Title: 'Merendam benih dengan Air Hangat',
           Description:
@@ -723,6 +778,7 @@ const initialStateTanaman = {
         },
         {
           Step: 2,
+          Status: 3,
           Waktu: 15,
           Title: 'Tunggu Hingga Dingin',
           Description:
@@ -732,6 +788,7 @@ const initialStateTanaman = {
         },
         {
           Step: 3,
+          Status: 1,
           Waktu: 8,
           Title: 'Meradiasi Benih',
           Description:
