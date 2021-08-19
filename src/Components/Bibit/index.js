@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {colors} from '../../Utils';
 
-const Bibit = ({nama, gambar, medanNormal, medanExpired, jumlahHari, method, navigation}) => {
+const Bibit = ({nama, gambar, medanNormal, medanExpired, jumlahHari, method, navigation, manfaat}) => {
   return (
     <TouchableOpacity
       style={styles.menuBibit}
@@ -12,7 +12,8 @@ const Bibit = ({nama, gambar, medanNormal, medanExpired, jumlahHari, method, nav
         medanNormal: medanNormal,
         medanExpired: medanExpired,
         jumlahHari: jumlahHari,
-        method: method
+        method: method,
+        manfaat:manfaat
       })}>
       <Image style={styles.gambarBibit} source={gambar} />
       <Text style={styles.namaBibit}>{nama}</Text>

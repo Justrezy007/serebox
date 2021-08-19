@@ -16,7 +16,7 @@ import {colors} from '../../Utils';
 const BibitDetail = ({route, navigation}) => {
   const Tanaman = useSelector(state => state.TanamanReducer.Tanaman);
   const dispatch = useDispatch();
-  const {nama, gambar, medanNormal, medanExpired, jumlahHari, method} = route.params;
+  const {nama, gambar, medanNormal, medanExpired, jumlahHari, method, manfaat} = route.params;
   const [form, setForm] = useState({
     nama: nama,
     gambar: gambar,
@@ -25,6 +25,7 @@ const BibitDetail = ({route, navigation}) => {
     method: method,
     jumlahBenih: "",
     expired: false,
+    manfaat: manfaat,
   });
 
   const onInputChange = (value, input) => {
@@ -59,8 +60,8 @@ const BibitDetail = ({route, navigation}) => {
       jumlah: parseInt(form.jumlahBenih),
       medan: form.medan, 
       method: method,    
+      manfaat: form.manfaat,
     };
-    console.log(Tanaman);
     dispatch({
       type: 'SET_FORM',
       inputNama: form.nama,
@@ -70,6 +71,7 @@ const BibitDetail = ({route, navigation}) => {
       inputMethod: method,
       inputBenih: parseInt(form.jumlahBenih),
       inputKondisi: form.expired ? 'Expired' : 'Baru',
+      manfaat : form.manfaat
     });
     const inputRef = FIREBASE.database().ref('Tanaman');
     inputRef

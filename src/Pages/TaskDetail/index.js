@@ -65,36 +65,40 @@ const TaskDetail = ({route, navigation}) => {
           Kondisi: Detail.kondisi == 'baru' ? 0 : 1,
           Medan: Detail.medan,
           Nama: handleNama(Detail.nama),
-          Status: 1,
+          Status: Detail.method[step - 1].Status,
         });
 
         setTimerData({
           hours: 0,
-          minutes: Detail.method[step - 1].Waktu,
-          seconds: 0,
+          minutes: 0,
+          seconds: Detail.method[step - 1].Waktu,
         });
       });
   }, []);
 
   const handleDone = () => {
+    setTanamanData({
+      ...tanamanData,
+      Status: 0,
+    });
     FIREBASE.database()
-      .ref('Tanaman/' + id )
+      .ref('Tanaman/' + id)
       .once('value', querySnapShot => {
         let data = querySnapShot.val() ? querySnapShot.val() : {};
 
         FIREBASE.database()
           .ref('Tanaman/' + id)
           .update({
-            gambar : data.gambar,
-            jumlah : data.jumlah,
-            kondisi : data.kondisi,
-            medan : data.medan,
-            method : data.method,
-            nama : data.nama,
-            totalStep : data.totalStep,
-            updateStep : (step),
+            gambar: data.gambar,
+            jumlah: data.jumlah,
+            kondisi: data.kondisi,
+            medan: data.medan,
+            method: data.method,
+            nama: data.nama,
+            totalStep: data.totalStep,
+            updateStep: step,
           });
-          
+
         FIREBASE.database()
           .ref('Tanaman/' + id + '/method/' + (step - 1))
           .update({
@@ -106,18 +110,21 @@ const TaskDetail = ({route, navigation}) => {
             isOpen: false,
           });
 
-        FIREBASE.database()
-          .ref('Tanaman/' + id + '/method/' + step)
-          .update({
-            Description: data.method[step].Description,
-            Step: data.method[step].Step,
-            Title: data.method[step].Title,
-            Waktu: data.method[step].Waktu,
-            isDone: false,
-            isOpen: true,
-          });
-
+        if (data.method[step]) {
+          FIREBASE.database()
+            .ref('Tanaman/' + id + '/method/' + step)
+            .update({
+              Description: data.method[step].Description,
+              Step: data.method[step].Step,
+              Title: data.method[step].Title,
+              Waktu: data.method[step].Waktu,
+              isDone: false,
+              isOpen: true,
+            });
+        }
       });
+
+    FIREBASE.database().ref('BenihData').update(tanamanData);
     BackgroundTimer.stopBackgroundTimer();
     navigation.navigate('Home');
   };
@@ -130,15 +137,11 @@ const TaskDetail = ({route, navigation}) => {
     BackgroundTimer.runBackgroundTimer(() => {
       if (time > 0) {
         time--;
-        let hour = Math.floor(time / 3600);
-        let minute = Math.floor(time / 60) - hour * 60;
-        let second = Math.floor(time / 1) - hour * 3600 - minute * 60;
         setTimerData({
-          hours: hour,
-          minutes: minute,
-          seconds: second,
+          hours: Math.floor(time / 3600),
+          minutes: Math.floor(time / 60) - Math.floor(time / 3600) * 60,
+          seconds: time - ((Math.floor(time / 60) - Math.floor(time / 3600) * 60)*60)
         });
-        console.log(time);
       } else {
         setIsDone(true);
       }

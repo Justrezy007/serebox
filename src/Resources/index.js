@@ -11,6 +11,7 @@ import ShoppingBag from './icons/shopping-bag.svg';
 import Exit from './icons/x.svg';
 import CheckCircle from './icons/check-circle.svg';
 import Trash from './icons/trash.svg';
+import InfoIcon from './icons/info.svg';
 import BawangMerah from './images/BawangMerah.jpg';
 import Cabai from "./images/Cabai.jpg"
 import Jagung from "./images/Jagung.jpg"
@@ -33,8 +34,10 @@ import KurmaMajol from "./images/KurmaMajol.jpg"
 import KacangHijau from "./images/KacangHijau.jpg"
 import Kakao from "./images/Kakao.jpg"
 
+
 export {
   ArrowLeft,
+  InfoIcon,
   Bell,
   Check,
   Clipboard,
@@ -67,5 +70,5 @@ export {
   Timun,
   Tomat,
   KacangHijau,
-  Kakao
+  Kakao,
 };

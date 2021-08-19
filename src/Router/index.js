@@ -5,7 +5,8 @@ import Menu from "../Pages/Menu"
 import BibitDetail from '../Pages/BibitDetail';
 import TanamanDetail from "../Pages/TanamanDetail";
 import Setting from "../Pages/Setting";
-import TaskDetail from "../Pages/TaskDetail"
+import TaskDetail from "../Pages/TaskDetail";
+import Benefit from "../Pages/Benefit";
  
 
 const Stack = createStackNavigator();
@@ -19,6 +20,7 @@ const Router = () => {
           <Stack.Screen name="TanamanDetail" component={TanamanDetail} options={{headerShown: false}} />
           <Stack.Screen name="BibitDetail" component={BibitDetail} options={{headerShown: false}} />
           <Stack.Screen name="TaskDetail" component={TaskDetail} options={{headerShown: false}} />
+          <Stack.Screen name="Benefit" component={Benefit} options={{headerShown: true}} />
         </Stack.Navigator>
     )
 }

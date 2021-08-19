@@ -9,7 +9,7 @@ import {
   Alert,
 } from 'react-native';
 import {colors} from '../../Utils';
-import {ArrowLeft, Trash} from '../../Resources';
+import {ArrowLeft, Trash, InfoIcon} from '../../Resources';
 import Task from '../../Components/Task';
 import FIREBASE from '../../Config/FIREBASE';
 
@@ -57,16 +57,25 @@ const TanamanDetail = ({navigation, route}) => {
       {tanamanData.Tanaman ? (
         <View>
           <View style={styles.action}>
+            
             <TouchableOpacity
               style={styles.closeButton}
               onPress={() => navigation.navigate('Home')}>
               <ArrowLeft style={styles.icon} />
             </TouchableOpacity>
+            <View style={styles.button}>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => navigation.navigate('Benefit',{id:id})}>
+              <InfoIcon style={styles.icon} />
+            </TouchableOpacity>
+
             <TouchableOpacity
               style={styles.deleteButton}
               onPress={deleteTanaman}>
               <Trash style={styles.icon} />
             </TouchableOpacity>
+            </View>
           </View>
           <View style={styles.header}>
             <View style={styles.iconWrapper}>
@@ -180,4 +189,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.textSecond,
   },
+  button:{
+    flexDirection: 'row'
+  }
 });

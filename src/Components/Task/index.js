@@ -28,7 +28,7 @@ const Task = ({
           <Text style={styles.checkTitle}>Step {step}</Text>
         </View>
         <View>
-          <Text style={styles.timeNeed}>{time} minutes</Text>
+          <Text style={styles.timeNeed}>{Math.floor(time/60) } minutes</Text>
         </View>
       </View>
     </TouchableOpacity>

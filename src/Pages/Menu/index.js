@@ -22,6 +22,7 @@ const Menu = ({navigation}) => {
                 medanExpired={benih.medanMagnetExpired}
                 jumlahHari={benih.jumlahHari}
                 method={benih.method}
+                manfaat={benih.manfaat}
               />
             );
           })}
