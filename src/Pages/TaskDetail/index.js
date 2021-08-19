@@ -123,8 +123,12 @@ const TaskDetail = ({route, navigation}) => {
             });
         }
       });
+    
 
-    FIREBASE.database().ref('BenihData').update(tanamanData);
+    FIREBASE.database().ref('BenihData').update({
+      ...tanamanData,
+      Status: 0,
+    });
     BackgroundTimer.stopBackgroundTimer();
     navigation.navigate('Home');
   };
